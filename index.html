@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+
+html, body { height: 100%; margin: 0; }
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: #eee;
+}
+.page {
+  position: relative; /* 讓裡面的 #ptools 可以相對定位 */
+  width: 21cm;
+  height: 29.7cm;
+  background: #fff;
+  padding: 1cm 0.5cm 0.55cm 0.5cm;
+  box-sizing: border-box;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+td {
+  border: 1px solid #000;
+  text-align: center;
+  vertical-align: middle;
+  font-family: Arial;
+  font-size: 18px; /* 全表格文字 18px */
+}
+@page { size: A4 portrait; margin: 0; }
+@media print {
+  body { background: #fff; }
+  .page { box-shadow: none; }
+  #ptools { display:none !important; }
+}
+#ptools {
+  position: absolute;     /* 改成 absolute，相對 .page 定位 */
+  right: 8.5cm;          /* 貼近表格右邊，可以微調距離（負值更靠近） */
+  top: 50%;               /* 上下置中 */
+  transform: translateY(-50%);
+  z-index: 9999;
+}
+
+#ptools .stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#ptools button {
+  padding:20px 30px;      /* 內距變大，按鈕變高變寬 */
+  font-size:28px;         /* 文字變大 */
+  border:1px solid #333;
+  border-radius:10px;     /* 圓角更明顯 */
+  background:#fff;
+  cursor:pointer;
+}
+
+
+/* 特定樣式調整 */
+.title-row td {
+  border: none !important; /* 隱藏表格線 */
+  border-bottom: none !important;
+  font-size: 36px !important;
+  color: #002060; /* 深藍色 */
+  font-weight: bold;
+}
+
+/* 保留下一行表格的上邊線 */
+.keep-top-border td {
+  border-top: 1px solid #000 !important;
+}
+
+@media print {
+  body { background: #fff; }
+  .page { box-shadow: none; }
+  #ptools { display:none !important; }
+
+  /* 隱藏框線但保留文字 */
+  input[type="text"],
+  textarea,
+  .ipt {
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    color: #000 !important;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="page">
+
+<table>
+  <!-- 第42行：表格標題區 -->
+  <tr class="title-row" style="height:80px;">
+    <td colspan="32">
+      <a href="https://syy1224ini.github.io/twhgxdtddlb/">
+        <img src="https://i.meee.com.tw/0yqJwCn.png" alt="Logo" style="height:80px;">
+      </a>
+    </td>
+    <td colspan="137">不動產（租屋）委託物件登錄表</td>
+	<td colspan="32">
+      <a href="https://example.com">
+        <img src="https://i.meee.com.tw/MZq7WoZ.png" alt="Logo" style="height:80px;">
+      </a>
+    </td>
+  </tr>
+
+  <!-- 第43行：保留上方邊線 -->
+  <tr class="keep-top-border" style="height:50px;">
+    <td colspan="31">案名</td><td colspan="61"><input class="ipt tl" style="width:200px;"></td><td colspan="30">委託書編號</td><td colspan="79"><input class="ipt tl" style="width:140px;"></td>
+  </tr>
+  <tr style="height:76px;"><td colspan="31">建物門牌<br>(土地地號)</td><td colspan="170"><textarea class="ipt tl" style="width:550px; height:40px; resize:none; overflow-wrap:break-word; white-space:pre-wrap;"></textarea></td></tr>
+  <tr style="height:76px;"><td colspan="31">租賃用途</td><td colspan="61"><input type="checkbox" class="cbx">居住用 <br><input type="checkbox" class="cbx">非居住用 <input type="checkbox" class="cbx">混合用</td><td colspan="30">建物出租型態</td><td colspan="79"><input type="checkbox" class="cbx">整棟(戶)出租<input type="checkbox" class="cbx">分層(戶)出租<br><input type="checkbox" class="cbx">獨立套房<input type="checkbox" class="cbx">分租套房<input type="checkbox" class="cbx">分租雅房</td></tr>
+  <tr style="height:38px;"><td colspan="31">租賃筆棟數</td><td colspan="170">土地<input class="ipt tl" style="width:56px;">筆<span style="display:inline-block; width:50px;"></span>建物<input class="ipt tl" style="width:56px;">棟(戶)<span style="display:inline-block; width:50px;"></span>房間<input class="ipt tl" style="width:56px;">間</td></tr>
+  <tr style="height:38px;"><td colspan="31">總樓層數</td><td colspan="61"><input class="ipt tl" style="width:140px;"></td><td colspan="30">租賃層次</td><td colspan="79"><input class="ipt tl" style="width:140px;"></td></tr>
+  <tr style="height:38px;"><td colspan="31">建物現況格局</td><td colspan="170"><input class="ipt tl" style="width:56px;">房<input class="ipt tl" style="width:56px;">廳<input class="ipt tl" style="width:56px;">衛 <input type="checkbox" class="cbx">無隔間</td></tr>
+  <tr style="height:76px;"><td colspan="31">建物型態</td><td colspan="170"><input type="checkbox" class="cbx">公寓(無電梯) <input type="checkbox" class="cbx">透天厝 <input type="checkbox" class="cbx">店面(店鋪) <input type="checkbox" class="cbx">辦工商業大樓 <br><input type="checkbox" class="cbx">住宅大樓(11層含以上有電梯) <input type="checkbox" class="cbx">華廈(10層含以下有電梯) <input type="checkbox" class="cbx">工廠<br><input type="checkbox" class="cbx">廠辦 <input type="checkbox" class="cbx">農舍 <input type="checkbox" class="cbx">倉庫<input type="checkbox" class="cbx">土地(地上無建物登記)</td></tr>
+  <tr style="height:65px;"><td colspan="31">提供設備</td><td colspan="170"><input type="checkbox" class="cbx">冷氣<input class="ipt tl" style="width:56px;">台 <input type="checkbox" class="cbx">熱水器 <input type="checkbox" class="cbx">洗衣機 <input type="checkbox" class="cbx">電視機 <input type="checkbox" class="cbx">冰箱 <input type="checkbox" class="cbx">瓦斯或天然氣 <br><input type="checkbox" class="cbx">有線電視<input type="checkbox" class="cbx">網路 <input type="checkbox" class="cbx">傢俱 <input type="checkbox" class="cbx">無上述設備</td></tr>
+  <tr style="height:38px;"><td colspan="31">租賃期間</td><td colspan="170"><input class="ipt tl" style="width:56px;">年<input class="ipt tl" style="width:56px;">月<input class="ipt tl" style="width:56px;">日至<input class="ipt tl" style="width:56px;">年<input class="ipt tl" style="width:56px;">月<input class="ipt tl" style="width:56px;">日</tr>
+  <tr style="height:65px;"><td colspan="31">租賃訂約日期</td><td colspan="65"><input class="ipt tl" style="width:50px;">年<input class="ipt tl" style="width:50px;">月<input class="ipt tl" style="width:50px;">日</td><td colspan="40">不動產租金總額<br>(含車位租金總額)</td><td colspan="65"><input class="ipt tl" style="width:56px;">元<br><input type="checkbox" class="cbx">月<input type="checkbox" class="cbx">季<input type="checkbox" class="cbx">半年<input type="checkbox" class="cbx">年</td></tr>
+  <tr style="height:38px;"><td colspan="31">建物租賃面積</td><td colspan="65"><input class="ipt tl" style="width:70px;">坪</td><td colspan="31">車位租賃面積</td><td colspan="74"><input class="ipt tl" style="width:70px;">坪</td></tr>
+  <tr style="height:38px;"><td colspan="31">主建物面積</td><td colspan="32"><input class="ipt tl" style="width:50px;">坪</td><td colspan="33">附屬建物面積</td><td colspan="31"><input class="ipt tl" style="width:50px;">坪</td><td colspan="31">公設建物面積</td></td><td colspan="43"><input class="ipt tl" style="width:50px;">坪</td></tr>
+  <tr style="height:38px;"><td colspan="31">有無管理員</td><td colspan="65"><input type="checkbox" class="cbx">有<input type="checkbox" class="cbx">無</td><td colspan="31">有無管理組織</td><td colspan="74"><input type="checkbox" class="cbx">有<input type="checkbox" class="cbx">無</td></tr>
+  <tr style="height:38px;"><td colspan="31">車位</td><td colspan="65"><input type="checkbox" class="cbx">無車位 <input type="checkbox" class="cbx">車位<input class="ipt tl" style="width:56px;">個</td><td colspan="31">有無電梯</td><td colspan="74"><input type="checkbox" class="cbx">有<input type="checkbox" class="cbx">無</td></tr>
+  <tr style="height:50px;"><td colspan="31">車位類別</td><td colspan="170"><input type="checkbox" class="cbx">坡平<input type="checkbox" class="cbx">坡機<input type="checkbox" class="cbx">升降平面<input type="checkbox" class="cbx">升降機械<input type="checkbox" class="cbx">塔式車位<input type="checkbox" class="cbx">一樓平面<input type="checkbox" class="cbx">其他</td></tr>
+  <tr style="height:38px;"><td colspan="31">車位租金</td><td colspan="65"><input type="checkbox" class="cbx">單獨計價<input class="ipt tl" style="width:56px;">元/月<br><input type="checkbox" class="cbx">已含入租金總額</td><td colspan="40">車位樓層及編號</td><td colspan="65"><textarea class="ipt tl" style="width:150px; height:32px; resize:none; overflow-wrap:break-word; white-space:pre-wrap;"></textarea></td></tr>
+  <tr style="height:50px;"><td colspan="31">備註欄</td><td colspan="170" style="text-align:left;">租金含<input type="checkbox" class="cbx">管理費 <input type="checkbox" class="cbx">水費<input type="checkbox" class="cbx">電費<input type="checkbox" class="cbx">瓦斯費<input type="checkbox" class="cbx">網路費<input type="checkbox" class="cbx">稅金(限非居住用或混合用)<br><input type="checkbox" class="cbx">租賃標的含多個門牌且未個別約定租金，門牌<input class="ipt tl" style="width:200px;"><br><input type="checkbox" class="cbx">租賃標的含增建或未登記建物</td></tr>
+</table>
+
+</div>
+<div id="ptools">
+  <div class="stack">
+    <button id="clearBtn" type="button">全部清除</button>
+    <button onclick="window.print()">列印</button>
+  </div>
+</div>
+<script>
+  document.getElementById('clearBtn')?.addEventListener('click', function () {
+    // 找到主要頁面容器
+    const container = document.querySelector('.page') || document;
+
+    // 清空所有 input
+    container.querySelectorAll('input').forEach(el => {
+      const type = (el.type || '').toLowerCase();
+      if (type === 'checkbox' || type === 'radio') {
+        el.checked = false; // 取消勾選
+      } else {
+        el.value = ''; // 清空文字
+      }
+    });
+
+    // 清空所有 textarea
+    container.querySelectorAll('textarea').forEach(el => el.value = '');
+
+    // 清空 contenteditable（如果有）
+    container.querySelectorAll('[contenteditable="true"]').forEach(el => el.innerText = '');
+  });
+</script>
+
+</body>
+</html>
