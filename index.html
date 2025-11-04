@@ -4,13 +4,20 @@
 <meta charset="UTF-8">
 <style>
 
-html, body { height: 100%; margin: 0; }
+html, body { 
+  height: 100%; 
+  margin: 0; 
+  overflow-x: auto !important; /* ✅ 關鍵：允許整個頁面在水平方向上滾動 */
+  -webkit-overflow-scrolling: touch; /* 為了行動裝置瀏覽器優化滾動 */
+}
 body {
   min-height: 100vh;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   background: #eee;
+  /* 確保 body 內容不會被強制縮小 */
+  min-width: 23cm; /* 21cm (A4寬) + 左右留白 + 按鈕空間，此值可確保表格和按鈕可見 */
 }
 .page {
   position: relative; /* 讓裡面的 #ptools 可以相對定位 */
@@ -41,7 +48,7 @@ td {
 }
 #ptools {
   position: absolute;     /* 改成 absolute，相對 .page 定位 */
-  right: 2cm;          /* 貼近表格右邊，可以微調距離（負值更靠近） */
+  right: -6cm;          /* 貼近表格右邊，可以微調距離（負值更靠近） */
   top: 50%;               /* 上下置中 */
   transform: translateY(-50%);
   z-index: 9999;
@@ -136,13 +143,15 @@ td {
   <tr style="height:50px;"><td colspan="31">備註欄</td><td colspan="170" style="text-align:left;">租金含<input type="checkbox" class="cbx">管理費 <input type="checkbox" class="cbx">水費<input type="checkbox" class="cbx">電費<input type="checkbox" class="cbx">瓦斯費<input type="checkbox" class="cbx">網路費<input type="checkbox" class="cbx">稅金(限非居住用或混合用)<br><input type="checkbox" class="cbx">租賃標的含多個門牌且未個別約定租金，門牌<input class="ipt tl" style="width:200px;"><br><input type="checkbox" class="cbx">租賃標的含增建或未登記建物</td></tr>
 </table>
 
-</div>
 <div id="ptools">
   <div class="stack">
     <button id="clearBtn" type="button">全部清除</button>
     <button onclick="window.print()">列印</button>
   </div>
 </div>
+
+</div>
+
 <script>
   document.getElementById('clearBtn')?.addEventListener('click', function () {
     // 找到主要頁面容器
